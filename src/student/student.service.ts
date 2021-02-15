@@ -18,4 +18,20 @@ export class StudentService {
     });
     return this.studentRepo.save(student);
   }
+
+  async studentById(id: string): Promise<Student | null> {
+    const student = await this.studentRepo.findOne({ id });
+    if (!student) {
+      return null;
+    }
+    return student;
+  }
+
+  async getStudents(): Promise<Student[] | null> {
+    const students = await this.studentRepo.find();
+    if (!students) {
+      return null;
+    }
+    return students;
+  }
 }

@@ -8,17 +8,17 @@ export class LessonResolver {
   constructor(private lessonService: LessonService) {}
 
   @Query(() => [LessonType])
-  lessons() {
+  async lessons() {
     return this.lessonService.getLessons();
   }
 
   @Query(() => LessonType)
-  lessonById(@Args('id') id: string) {
+  async lessonById(@Args('id') id: string) {
     return this.lessonService.getLessonById(id);
   }
 
   @Mutation(() => LessonType)
-  createLesson(
+  async createLesson(
     @Args('createLessonInput') createLessonInput: CreateLessonInput,
   ) {
     return this.lessonService.createLesson(createLessonInput);
